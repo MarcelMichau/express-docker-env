@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  express-service:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - MY_AWESOME_VARIABLE=Awesome Compose Variable
