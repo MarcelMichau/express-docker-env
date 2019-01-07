@@ -15,7 +15,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: localhost:5000/express-docker-env:latest
+        - image: marcelmichau/express-docker-env:latest
           imagePullPolicy: IfNotPresent
           name: api
           ports:
