@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-docker-env-deployment
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - image: marcelmichau/express-docker-env:latest
+          imagePullPolicy: IfNotPresent
+          name: api
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MY_AWESOME_VARIABLE
+              valueFrom:
+                configMapKeyRef:
+                  name: my-awesome-config-map
+                  key: awesomeEnvironmentVariable
+          resources:
+            requests:
+              memory: '64Mi'
+              cpu: '250m'
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-docker-env-service
+  labels:
+    app: api
+spec:
+  type: 'LoadBalancer'
+  ports:
+    - protocol: TCP
+      name: 'http'
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: api
