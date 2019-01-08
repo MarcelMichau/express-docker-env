@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: my-awesome-config-map
 data:
-  awesomeEnvironmentVariable: 'Awesome Kubernetes Variable'
+  MY_AWESOME_VARIABLE: 'Awesome Kubernetes Variable'

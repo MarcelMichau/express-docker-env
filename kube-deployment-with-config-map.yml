@@ -20,12 +20,9 @@ spec:
           name: api
           ports:
             - containerPort: 3000
-          env:
-            - name: MY_AWESOME_VARIABLE
-              valueFrom:
-                configMapKeyRef:
-                  name: my-awesome-config-map
-                  key: awesomeEnvironmentVariable
+          envFrom:
+            - configMapRef:
+                name: my-awesome-config-map
           resources:
             requests:
               memory: '64Mi'
