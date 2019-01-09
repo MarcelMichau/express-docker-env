@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: express-docker-env-with-config-map-service
+  name: {{ .Release.Name }}-with-config-map-service
   labels:
     app: with-config-map
 spec:

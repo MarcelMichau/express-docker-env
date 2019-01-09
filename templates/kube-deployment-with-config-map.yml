@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-docker-env-with-config-map-deployment
+  name: {{ .Release.Name }}-with-config-map-deployment
   labels:
     app: with-config-map
 spec:
@@ -22,7 +22,7 @@ spec:
             - containerPort: 3000
           envFrom:
             - configMapRef:
-                name: my-awesome-config-map
+                name: {{ .Release.Name }}-my-awesome-config-map
           resources:
             requests:
               memory: '64Mi'
